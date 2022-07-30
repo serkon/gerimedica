@@ -1,0 +1,32 @@
+<h1>{{ 'WELCOME' | translate }}</h1>
+<p>{{ 'HELLO' | translate: param }}</p>
+<select class="form-select" [(ngModel)]="languageService.currentLanguage" (change)="languageService.setLanguage(languageService.currentLanguage)">
+  <option *ngFor="let language of languageService.languages" [ngValue]="language">
+    {{ language }}
+  </option>
+</select>
+<button class="btn btn-primary m-4 p-4" (click)="navigate()">Navigate</button>
+<div>Selected Language: {{ languageService.currentLanguage }}</div>
+<button class="btn btn-ghost m-4 p-4">Primary</button>
+<button class="btn btn-ghost-secondary m-4 p-4">Secondary</button>
+<button class="btn btn-warning m-4 p-4">Warning</button>
+<button class="btn btn-danger m-4 p-4">Danger</button>
+<button class="btn btn-info m-4 p-4">Info</button>
+<button class="btn btn-success m-4 p-4">Success</button>
+<button class="btn btn-dark m-4 p-4">Dark</button>
+<button class="btn btn-light m-4 p-4">Light</button>
+<button class="btn btn-black m-4 p-4">Black</button>
+<button class="btn btn-white m-4 p-4">White</button>
+<select class="form-select sercan" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+<input type="text" class="form-control" />
+<input type="checkbox" class="form-check-input" id="check" />
+<label for="check">checkbox</label>
+<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+<label for="flexRadioDefault1">radio</label>
+<input class="form-check-input form-check-input-warning" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+<label for="flexRadioDefault2">radio</label>

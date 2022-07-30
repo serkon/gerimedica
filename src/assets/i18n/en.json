@@ -1,0 +1,4 @@
+{
+  "WELCOME": "Welcome to the Angular Starter!",
+  "HELLO": "Hello {{value}}"
+}

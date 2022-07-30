@@ -1,0 +1,84 @@
+{
+  "name": "starter",
+  "version": "1.0.1",
+  "scripts": {
+    "ng": "npx @angular/cli",
+    "start": "npm run ng serve",
+    "build": "npm run ng build",
+    "watch": "npm run ng build --watch --configuration development",
+    "lint": "npm run ng lint",
+    "fix": "npx eslint -c ./.eslintrc.json src --ext .js,.jsx,.json,.ts,.tsx --fix",
+    "style": "stylelint \"src/**/*.scss\" --cache --cache-location .cache/.stylelintcache --fix",
+    "test": "npm run ng test --watch=false --code-coverage --browsers=ChromeHeadless",
+    "prehusky": "rm -rf .husky && git init && husky install && husky lint",
+    "husky": "npx husky add .husky/pre-push 'ng test --watch=false --code-coverage --browsers=ChromeHeadless' && npx husky add .husky/commit-msg 'npx commitlint --edit $1'",
+    "postinstall": "npm run husky"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~14.0.5",
+    "@angular/common": "~14.0.5",
+    "@angular/compiler": "~14.0.5",
+    "@angular/core": "~14.0.5",
+    "@angular/forms": "~14.0.5",
+    "@angular/platform-browser": "~14.0.5",
+    "@angular/platform-browser-dynamic": "~14.0.5",
+    "@angular/router": "~14.0.5",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
+    "@stitches/core": "^1.2.8",
+    "bootstrap": "^5.2.0-beta1",
+    "rxjs": "~7.5.5",
+    "tslib": "^2.4.0",
+    "zone.js": "~0.11.6"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~14.0.5",
+    "@angular-eslint/builder": "14.0.2",
+    "@angular-eslint/eslint-plugin": "14.0.2",
+    "@angular-eslint/eslint-plugin-template": "14.0.2",
+    "@angular-eslint/schematics": "14.0.2",
+    "@angular-eslint/template-parser": "14.0.2",
+    "@angular/cli": "~14.0.5",
+    "@angular/compiler-cli": "~14.0.5",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/jasmine": "~4.0.3",
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@typescript-eslint/parser": "5.30.5",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.19.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.1",
+    "jasmine-core": "~4.2.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.1",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.14",
+    "stylelint": "^14.9.1",
+    "stylelint-config-css-modules": "^4.1.0",
+    "stylelint-config-standard-scss": "^4.0.0",
+    "stylelint-no-unsupported-browser-features": "^5.0.3",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.3.0",
+    "tailwindcss": "^3.1.5",
+    "typescript": "~4.7.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
