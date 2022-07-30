@@ -1,10 +1,6 @@
 {
   "extends": ["stylelint-config-standard-scss", "stylelint-config-css-modules"],
-  "plugins": [
-    "stylelint-no-unsupported-browser-features",
-    "stylelint-order",
-    "stylelint-scss"
-  ],
+  "plugins": ["stylelint-no-unsupported-browser-features", "stylelint-order", "stylelint-scss"],
   "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.html"],
   "rules": {
     "max-line-length": [120, { "ignorePattern": "/data:image/*./" }],
@@ -21,15 +17,7 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
-          "function",
-          "if",
-          "each",
-          "include",
-          "mixin",
-          "return",
-          "debug"
-        ]
+        "ignoreAtRules": ["function", "if", "each", "include", "mixin", "return", "debug"]
       }
     ],
     "at-rule-empty-line-before": [
@@ -72,10 +60,7 @@
         ]
       }
     ],
-    "selector-pseudo-element-no-unknown": [
-      true,
-      { "ignorePseudoElements": ["host", "ng-deep"] }
-    ],
+    "selector-pseudo-element-no-unknown": [true, { "ignorePseudoElements": ["host", "ng-deep"] }],
     "selector-pseudo-class-no-unknown": [
       true,
       {
@@ -96,14 +81,7 @@
       }
     ],
     "order/order": [
-      [
-        "custom-properties",
-        "at-variables",
-        "declarations",
-        "at-rules",
-        "rules",
-        "less-mixins"
-      ],
+      ["custom-properties", "at-variables", "declarations", "at-rules", "rules", "less-mixins"],
       {
         "severity": "warning"
       }
@@ -116,14 +94,7 @@
         },
         {
           "emptyLineBefore": "never",
-          "properties": [
-            "position",
-            "top",
-            "right",
-            "bottom",
-            "left",
-            "z-index"
-          ]
+          "properties": ["position", "top", "right", "bottom", "left", "z-index"]
         },
         {
           "emptyLineBefore": "never",
@@ -239,6 +210,7 @@
     "selector-combinator-space-before": "always",
     "selector-attribute-operator-space-before": "never",
     "selector-list-comma-newline-after": "always-multi-line",
-    "selector-list-comma-space-after": "always"
+    "selector-list-comma-space-after": "always",
+    "value-keyword-case": ["lower", { "ignoreFunctions": ["/mat.*/"] }]
   }
 }
