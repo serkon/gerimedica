@@ -11,6 +11,12 @@
 
 @include mat.core;
 
+// @include mat.strong-focus-indicators((
+//   border-style: none,
+//   border-width: 4px,
+//   border-radius: 2px,
+// ));
+
 $dark-primary-text: rgb(0 0 0 / 87%);
 $dark-secondary-text: rgb(0 0 0 / 54%);
 $dark-disabled-text: rgb(0 0 0 / 38%);
@@ -21,19 +27,19 @@ $light-secondary-text: rgb(255 255 255 / 70%);
 $light-disabled-text: rgb(255 255 255 / 50%);
 $light-dividers: rgb(255 255 255 / 12%);
 $light-focused: rgb(255 255 255 / 12%);
-$dark-primary-text: red;
-$light-primary-text: orange;
-$indigo-palette: (
-  50: #e8eaf6,
-  100: #c5cae9,
-  200: #9fa8da,
-  300: #7986cb,
-  400: #5c6bc0,
-  500: #3f51b5,
-  600: #3949ab,
-  700: #303f9f,
-  800: #283593,
-  900: #1a237e,
+$dark-primary-text: #212529;
+$light-primary-text: #ffffff;
+$my-palate: (
+  50: #58b9ff,
+  100: #49aaff,
+  200: #3a9bff,
+  300: #2b8cff,
+  400: #1c7dff,
+  500: #0d6efd,
+  600: #005fee,
+  700: #0050df,
+  800: #0041d0,
+  900: #0032c1,
   A100: #8c9eff,
   A200: #536dfe,
   A400: #3d5afe,
@@ -59,8 +65,10 @@ $indigo-palette: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$starter-primary: mat.define-palette(mat.$indigo-palette);
+$starter-primary: mat.define-palette($my-palate);
 $starter-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+@debug $starter-accent;
 
 // The warn palette is optional (defaults to red).
 $starter-warn: mat.define-palette(mat.$red-palette);
@@ -82,6 +90,8 @@ $starter-theme: mat.define-light-theme(
 // that you are using.
 
 @include mat.all-component-themes($starter-theme);
+
+// @include mat.strong-focus-indicators-theme($starter-theme);
 
 /* You can add global styles to this file, and also import other style files */
 

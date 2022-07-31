@@ -1,3 +1,30 @@
 :root {
   --font-family: "Roboto", sans-serif;
+  --menu-width-open: 200px;
+  --menu-width-closed: 64px;
+}
+
+.mat-drawer-container {
+  .mat-drawer {
+    box-sizing: content-box;
+    width: var(--menu-width-open);
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .mat-drawer-content {
+    // transform: translateX(200px);
+    margin-left: var(--menu-width-open) !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  &.container-closed {
+    .mat-drawer {
+      width: var(--menu-width-closed);
+    }
+
+    .mat-drawer-content {
+      // transform: translateX(64px) !important;
+      margin-left: var(--menu-width-closed) !important;
+    }
+  }
 }
