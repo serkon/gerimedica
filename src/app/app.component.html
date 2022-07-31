@@ -1,1 +1,30 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" [ngClass]="{ 'container-closed': !isExpanded }">
+  <mat-drawer #drawer class="example-sidenav" mode="side" disableClose="true" opened="true">
+    <button mat-flat-button (click)="isExpanded = !isExpanded" class="">GM</button>
+    <mat-nav-list>
+      <mat-list-item routerLink="/">
+        <mat-icon mat-list-icon>notifications</mat-icon>
+        <h4 mat-line *ngIf="isExpanded">VERSLAG</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>assignment</mat-icon>
+        <h4 mat-line *ngIf="isExpanded">MEDISCH</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>domain</mat-icon>
+        <h4 mat-line *ngIf="isExpanded">LABUITSLAGEN</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <h4 mat-line *ngIf="isExpanded">ADMIN</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder_shared</mat-icon>
+        <h4 mat-line *ngIf="isExpanded">ARCHIEF</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

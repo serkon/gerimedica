@@ -1,11 +1,14 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
+import { SharedModule } from 'src/app/shared.module';
 
 import { HomeComponent } from './home.component';
+import data from './to-render.json';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,6 +20,9 @@ describe('HomeComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        BrowserAnimationsModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -38,19 +44,46 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render h1 current language WELCOME', async () => {
-    // const translate = TestBed.inject(TranslateService); // bunun yerine direk component'in instance'ını kullandım. Ama herhangi bir dil için test yapmak istiyorsan buradan set edebilirsin.
-    const fixture = TestBed.createComponent(HomeComponent);
-    const app = fixture.componentInstance;
-    const { languageService } = app;
-    const compiled = fixture.nativeElement as HTMLElement;
-    fixture.detectChanges();
+  it('form invalid when empty', () => {
+    component.ngOnInit();
+    const { controls } = component.myForm;
 
-    return fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      languageService.translate.get('WELCOME').subscribe((res: string) => {
-        expect(compiled.querySelector('h1')?.textContent).toContain(res);
-      });
+    data.forEach((item) => {
+      controls[item.field].setValue('');
     });
+    expect(component.myForm.valid).toBeFalsy();
+  });
+
+  it('form valid when filled', () => {
+    component.ngOnInit();
+    const { controls } = component.myForm;
+
+    data.forEach((item) => {
+      controls[item.field].setValue('test');
+    });
+    expect(component.myForm.valid).toBeTruthy();
+  });
+
+  it('name field validity', () => {
+    const { name } = component.myForm.controls;
+    name.setValue('test');
+
+    expect(name.valid).toBeTrue();
+  });
+
+  it('form field invalid when email is not entered', () => {
+    const { name, email } = component.myForm.controls;
+    name.setValue('test');
+    email.setValue('');
+
+    expect(component.myForm.valid).toBeFalsy();
+  });
+
+  it('form field invalid when name is not entered', () => {
+    const { name, email } = component.myForm.controls;
+    name.setValue('');
+    email.setValue('test');
+
+    expect(component.myForm.valid).toBeFalsy();
   });
 });

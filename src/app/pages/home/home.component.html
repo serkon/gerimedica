@@ -1,32 +1,46 @@
-<h1>{{ 'WELCOME' | translate }}</h1>
-<p>{{ 'HELLO' | translate: param }}</p>
-<select class="form-select" [(ngModel)]="languageService.currentLanguage" (change)="languageService.setLanguage(languageService.currentLanguage)">
-  <option *ngFor="let language of languageService.languages" [ngValue]="language">
-    {{ language }}
-  </option>
-</select>
-<button class="btn btn-primary m-4 p-4" (click)="navigate()">Navigate</button>
-<div>Selected Language: {{ languageService.currentLanguage }}</div>
-<button class="btn btn-ghost m-4 p-4">Primary</button>
-<button class="btn btn-ghost-secondary m-4 p-4">Secondary</button>
-<button class="btn btn-warning m-4 p-4">Warning</button>
-<button class="btn btn-danger m-4 p-4">Danger</button>
-<button class="btn btn-info m-4 p-4">Info</button>
-<button class="btn btn-success m-4 p-4">Success</button>
-<button class="btn btn-dark m-4 p-4">Dark</button>
-<button class="btn btn-light m-4 p-4">Light</button>
-<button class="btn btn-black m-4 p-4">Black</button>
-<button class="btn btn-white m-4 p-4">White</button>
-<select class="form-select sercan" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-<input type="text" class="form-control" />
-<input type="checkbox" class="form-check-input" id="check" />
-<label for="check">checkbox</label>
-<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-<label for="flexRadioDefault1">radio</label>
-<input class="form-check-input form-check-input-warning" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-<label for="flexRadioDefault2">radio</label>
+<h1>Gerimedica</h1>
+
+<p [style.maxWidth]="'450px'">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed ultricies nisl, nec eleifend est. Morbi leo dolor,
+  convallis sed ex eget, sagittis pellentesque nulla. Curabitur vel nibh vitae dui blandit porta vel nec sem. Mauris
+  feugiat, augue sit amet volutpat viverra, odio ligula hendrerit est, a euismod tellus tellus cursus leo. Curabitur id
+  urna aliquam, commodo augue id, tristique est. Sed porta magna non accumsan blandit. Donec auctor ultrices placerat.
+</p>
+
+<form class="example-form" [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate [style.marginTop]="'64px'">
+  <h2>Registration Form</h2>
+  <ng-container *ngFor="let item of items">
+    <section [style]="item.hidden === 'false' ? 'visibility: visible; height: auto' : 'visibility: hidden; height: 0'">
+      <mat-form-field
+        class="form-field"
+        appearance="outline"
+        *ngIf="item.type === 'text'"
+        [ngClass]="{ invisible: item.hidden === 'true' }"
+        [hideRequiredMarker]="item.mandatory === false"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <input
+          type="{{ item.type }}"
+          placeholder="Please enter your {{ item.field }}"
+          aria-label="Number"
+          matInput
+          formControlName="{{ item.field }}"
+          name="{{ item.field }}"
+          id="input-{{ item.field }}"
+          [style.width]="'364px'"
+        />
+        <mat-error *ngIf="errorHandling(item.field, 'required')">
+          {{ item.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-checkbox *ngIf="item.type === 'check'" formControlName="{{ item.field }}">
+        {{ item.label }}
+      </mat-checkbox>
+    </section>
+  </ng-container>
+  <button mat-raised-button color="primary" class="form-submit" [disabled]="!myForm.valid">Submit</button>
+</form>
+
+<p [style.marginTop]="'32px'">
+  <code>{{ myForm.value | json }}</code>
+</p>
